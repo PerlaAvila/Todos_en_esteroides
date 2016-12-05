@@ -11,23 +11,24 @@ class TasksController
   def menu(input)
     task = input[1..-1].join(' ')
     case @command
-      when "add" then to_do_list(task)
+      when "add" then add(task)
       when "index" then index
       when "delete" then delete(task)
       when "complete" then complete(task)
       when "update" then update(task)
       else 
-        error
+        @view.error
     end
   end
 
-  def to_do_list(task)
+  def add(task)
     Task.create(task: task)
     @view.create(task)
   end
 
   def index
-   @view.index
+    tasks = Task.all
+    @view.index
   end
 
   def delete(input)
@@ -47,10 +48,6 @@ class TasksController
        @view.update(task.task)
       end
     end
-  end
-
-  def error
-    @view.error
   end
 
 end

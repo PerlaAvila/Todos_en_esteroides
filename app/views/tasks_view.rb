@@ -2,7 +2,7 @@ class TasksView
   # Recuerda que la única responsabilidad de la vista es desplegar data al usuario
 
   def index
-    Task.all.each_with_index do |task, index|
+    tasks.each_with_index do |task, index|
   
      if task.complete == true
        mark = "X" 
@@ -14,7 +14,7 @@ class TasksView
   end
 
   def create(task)
-     p "You have added #{task}"
+     puts "You have added #{task}"
   end
 
   def delete(task)
